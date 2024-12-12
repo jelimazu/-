@@ -1,5 +1,6 @@
+# main_controller.py
 from datetime import datetime
-
+from client.controllers.chat_controller import ChatController
 from client.rest_client import RestClient
 from client.views.main_view import MainView
 from tkinter import simpledialog, messagebox
@@ -55,3 +56,12 @@ class MainController:
         item_id = self.view.meeting_list.item(selected_item)["values"][0]
         RestClient.delete_meeting(item_id)
         self.update_meetings()
+
+    def open_chat(self):
+        selected_item = self.view.meeting_list.selection()
+        if not selected_item:
+            messagebox.showwarning("Open Chat", "No meeting selected.")
+            return
+        meeting_id = self.view.meeting_list.item(selected_item)["values"][0]
+        # Відкриваємо вікно чату
+        ChatController(meeting_id)
