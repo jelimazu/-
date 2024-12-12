@@ -25,6 +25,9 @@ class MainView(tk.Tk):
         self.delete_button = tk.Button(self, text="Delete Meeting", command=self.controller.delete_meeting)
         self.delete_button.pack(side=tk.LEFT, padx=10, pady=10)
 
+        self.chat_button = tk.Button(self, text="Open Chat", command=self.controller.open_chat)
+        self.chat_button.pack(side=tk.LEFT, padx=10, pady=10)
+
     def update_meeting_list(self, meetings):
         """Оновлює список зустрічей у вікні."""
         for row in self.meeting_list.get_children():
