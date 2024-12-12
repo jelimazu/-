@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package meeting;
+
+service MeetingService {
+  rpc GetMeeting(GetMeetingRequest) returns (GetMeetingResponse);
+  rpc AddParticipant(AddParticipantRequest) returns (AddParticipantResponse);
+  rpc ListParticipants(ListParticipantsRequest) returns (ListParticipantsResponse);
+}
+
+message GetMeetingRequest {
+  int32 meeting_id = 1;
+}
+
+message GetMeetingResponse {
+  int32 meeting_id = 1;
+  string title = 2;
+  string description = 3;
+  string date = 4;
+}
+
+message AddParticipantRequest {
+  int32 meeting_id = 1;
+  string participant_name = 2;
+}
+
+message AddParticipantResponse {
+  bool success = 1;
+}
+
+message ListParticipantsRequest {
+  int32 meeting_id = 1;
+}
+
+message Participant {
+  int32 participant_id = 1;
+  string name = 2;
+}
+
+message ListParticipantsResponse {
+  repeated Participant participants = 1;
+}
